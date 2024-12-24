@@ -28,6 +28,7 @@ class HyPepToxFuse_Predictor:
         f1 = f1.to(self.device)
         f2 = f2.to(self.device)
         f3 = f3.to(self.device)
+        fccd = fccd.to(self.device)
         all_prob = []
         for model in self.models:
             logit, _ = model.forward(f1, f2, f3, fccd)
