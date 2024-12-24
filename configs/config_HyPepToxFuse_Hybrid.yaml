@@ -1,0 +1,40 @@
+dataset:
+  dataset_root: Features/
+  feature_1_name: ESM_2
+  feature_2_name: ESM_1
+  feature_3_name: prot_t5_xl_uniref50
+  handcraft_name: CCD
+  max_length: 50
+  mean_feature: false
+  top_handcraft_feature: 887
+model_config:
+  drop: 0.3
+  gated_dim: 256
+  handcraft_dim: 887
+  input_dim_1: 2560
+  input_dim_2: 1280
+  input_dim_3: 1024
+  n_classes: 2
+  num_heads_attn: 2
+  num_heads_transformer: 2
+  num_layers_transformers: 2
+  num_mlp_layers: 4
+seed: 69
+trainer_config:
+  alpha_focal:
+  - 0.5
+  - 0.5
+  batch_size: 256
+  beta_focal: 1
+  epochs: 100
+  grad_accum: 1
+  k_fold: 5
+  loss_fn: focal
+  lr: 0.0001
+  ntxent_temperature: 0.1
+  num_workers: 24
+  optimizer_scheduler:
+    gamma: 0.5
+    step_size: 20
+  output_path: checkpoints/HyPepToxFuse_Hybrid
+  threshold: 0.5
