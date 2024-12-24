@@ -12,14 +12,15 @@ The official implementation of paper: **Update soon!**
 ## TOC
 
 This project is summarized into:
-- Installing environment
-- Preparing datasets
-- Configurations
-- Training models
-    - NLP only
-    - Hybrid (NLP+CCD)
-- Predicting models
-- Inferencing models
+- [Installing environment](#installing-environment)
+- [Preparing datasets](#preparing-datasets)
+- [Configurations](#configurations)
+- [Training models](#training-models)
+    - [NLP only](#nlp-only)
+    - [Hybrid (NLP+CCD)](#hybrid-nlpccd---our-main-model)
+- [Predicting models](#predicting-models)
+- [Inferencing models](#inferencing-models)
+- [Citation](#citation)
 
 ## Installing environment
 First, you need to install [Miniconda](https://docs.anaconda.com/miniconda/) (recommended) or [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html), then create a new environment by following command:
@@ -35,7 +36,7 @@ Second, you need to install required packages by running this command:
 python -m pip install -r requirements.txt --no-cache-dir
 ```
 
-(Optional) Third, if you want to run `Inferencer` (`inferencer.py`), please clone the [modified **iFeatureOmega**](https://github.com/duongttr/iFeatureOmega-CLI) package into `src/` folder. In this package, I optimized the speed processing of `_TPC()` function.
+(Optional) Third, if you want to run `Inferencer` (`inferencer.py`), please clone the [modified **iFeatureOmega**](https://github.com/duongttr/iFeatureOmega-CLI) package into `src/` folder. In this package, we optimized the speed processing of `_TPC()` function.
 
 ## Preparing datasets
 In this project, we utilized the benchmark dataset from [ToxinPred3](https://doi.org/10.1016/j.compbiomed.2024.108926). We used 3 main NLP models: **ESM-1**, **ESM-2** and **ProtT5**, and concatenated conventional descriptors (CCD) extracted from **iFeatureOmega**. We already extracted features for all of them and they can be downloaded from [OneDrive](https://1drv.ms/u/c/fa72f5f3c0e55162/EYiEkLysyp1AuaztMkayR_gBFTdrxJ5x0_coCmzxCvrIKA?e=m4fUbr). You can also find the raw dataset inside `raw_dataset/` folder or from the [original website](https://webs.iiitd.edu.in/raghava/toxinpred3/download.php).
