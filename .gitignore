@@ -1,5 +1,6 @@
 Features/
 checkpoints/best_models
+src/iFeatureOmega-CLI
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

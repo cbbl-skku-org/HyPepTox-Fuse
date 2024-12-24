@@ -11,7 +11,7 @@ class HyPepToxFuse_Predictor:
         self.models = [HyPepToxFuse_Hybrid(**model_config) for _ in range(nfold)]
         self.device = device
         
-        for ckpt_file, model in zip(os.listdir(ckpt_dir), self.models):
+        for ckpt_file, model in zip(sorted(os.listdir(ckpt_dir)), self.models):
             if not ckpt_file.endswith('.pth'):
                 continue
             

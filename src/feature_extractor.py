@@ -142,9 +142,9 @@ class ProtTrans:
 
 
 class CCD:
-    def __init__(self, file_path):
+    def __init__(self, data_dict=None, file_path=None):
         self.file_path = file_path
-        self.ifo = ifo.iProtein(file_path)
+        self.ifo = ifo.iProtein(data_dict=data_dict, file=file_path)
         self.init_feature()
 
     def init_feature(self):
