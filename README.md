@@ -128,9 +128,9 @@ output = predictor.predict_one(
 # Predict list of samples
 outputs = predictor(
     f1s=feature_1_list, # ESM-2, a list of tensor shaped (1, L, 2560)
-    f2s=feature_2_list, # ESM-2, a list of tensor shaped (1, L, 2560)
-    f3s=feature_3_list, # ESM-2, a list of tensor shaped (1, L, 2560)
-    fccds=feature_ccd_list, # ESM-2, a list of tensor shaped (1, L, 2560)
+    f2s=feature_2_list, # ESM-1, a list of tensor shaped (1, L, 1280)
+    f3s=feature_3_list, # ProtT5, a list of tensor shaped (1, L, 1024)
+    fccds=feature_ccd_list, # CCD, a list of tensor shaped (1, 887)
     threshold=0.5, # Classification threshold, default is 0.5
 )
 # Return: a tuple of list of toxcitiy (list[bool]) and list of 5-fold probabilities (list[list[float]])
