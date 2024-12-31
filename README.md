@@ -1,13 +1,13 @@
 <h1 align="center">HyPepTox-Fuse</h1>
 <p align="center"><a href="">📝 Paper</a> | <a href="https://balalab-skku.org/HyPepTox-Fuse/">🌐 Webserver (CBBL-SKKU)</a> | <a href="https://1drv.ms/f/c/fa72f5f3c0e55162/Ev06ewB86b5Hv-xAMCaLOkMBEOqAxyZEYrqfq2_-z70WKg?e=7lmVaP">🚩 Model & Dataset</a></p>
 
-The official implementation of paper: **Update soon!**
+The official implementation of paper: **HyPepTox-Fuse: An interpretable hybrid framework for accurate peptide toxicity prediction using NLP-based embeddings and conventional descriptors fusion**
 
 ## Abstract
 > Update soon!
 
 ## News
-> Update soon!
+- `2024.12.31`: Manuscript was submitted to Journal of Pharmaceutical Analysis (JPA)
 
 ## TOC
 
@@ -17,7 +17,7 @@ This project is summarized into:
 - [Configurations](#configurations)
 - [Training models](#training-models)
     - [NLP only](#nlp-only)
-    - [Hybrid (NLP+CCD)](#hybrid-nlpccd---our-main-model)
+    - [Hybrid (NLP+CCDs)](#hybrid-nlpccds---our-main-model)
 - [Predicting models](#predicting-models)
 - [Inferencing models](#inferencing-models)
 - [Citation](#citation)
@@ -39,12 +39,12 @@ python -m pip install -r requirements.txt --no-cache-dir
 (Optional) Third, if you want to run `Inferencer` (`inferencer.py`), please clone the [modified **iFeatureOmega**](https://github.com/duongttr/iFeatureOmega-CLI) package into `src/` folder. In this package, we optimized the speed processing of `_TPC()` function.
 
 ## Preparing datasets
-In this project, we utilized the benchmark dataset from [ToxinPred3](https://doi.org/10.1016/j.compbiomed.2024.108926). We used 3 main NLP models: **ESM-1**, **ESM-2** and **ProtT5**, and concatenated conventional descriptors (CCD) extracted from **iFeatureOmega**. We already extracted features for all of them and they can be downloaded from [OneDrive](https://1drv.ms/u/c/fa72f5f3c0e55162/EYiEkLysyp1AuaztMkayR_gBFTdrxJ5x0_coCmzxCvrIKA?e=m4fUbr). You can also find the raw dataset inside `raw_dataset/` folder or from the [original website](https://webs.iiitd.edu.in/raghava/toxinpred3/download.php).
+In this project, we utilized the benchmark dataset from [ToxinPred3](https://doi.org/10.1016/j.compbiomed.2024.108926). We used 3 main NLP models: **ESM-1**, **ESM-2** and **ProtT5**, and concatenated conventional descriptors (CCDs) extracted from **iFeatureOmega**. We already extracted features for all of them and they can be downloaded from [OneDrive](https://1drv.ms/u/c/fa72f5f3c0e55162/EYiEkLysyp1AuaztMkayR_gBFTdrxJ5x0_coCmzxCvrIKA?e=m4fUbr). You can also find the raw dataset inside `raw_dataset/` folder or from the [original website](https://webs.iiitd.edu.in/raghava/toxinpred3/download.php).
 
 ## Configurations
 You can find two files of configurations inside `configs/` folder:
 
-- `config_HyPepToxFuse_Hybrid.yaml` for training **Hybrid (NLP+CCD)**
+- `config_HyPepToxFuse_Hybrid.yaml` for training **Hybrid (NLP+CCDs)**
 - `config_HyPepToxFuse_NLP_only.yaml` for training **NLP only**
 
 There are some parameters you should concentrate on:
@@ -97,7 +97,7 @@ To reconstruct the results from the paper, you can run two following commands:
 python train_nlp_only.py --config configs/config_HyPepToxFuse_Hybrid.yaml --cuda
 ```
 
-### Hybrid (NLP+CCD) - our main model
+### Hybrid (NLP+CCDs) - our main model
 ```bash
 python train_hybrid.py --config configs/config_HyPepToxFuse_NLP_only.yaml --cuda
 ```
