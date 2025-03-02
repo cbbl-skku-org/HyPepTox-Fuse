@@ -1,7 +1,4 @@
 from src.architectures import HyPepToxFuse_Hybrid
-from src.utils import set_nested_attr
-from argparse import Namespace
-import yaml
 import torch
 from torch.nn.functional import softmax
 import os

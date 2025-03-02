@@ -1,8 +1,5 @@
 from Bio import SeqIO
 from src.feature_extractor import ESM, ProtTrans, CCD
-from predict import HyPepToxFuse_Predictor
-import yaml
-import torch
 from tqdm import tqdm
 
 class Inferencer:

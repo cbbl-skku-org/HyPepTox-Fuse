@@ -33,10 +33,17 @@ conda activate hypeptox_fuse
 Second, you need to install required packages by running this command:
 
 ```bash
+cd HyPepTox-Fuse/
 python -m pip install -r requirements.txt --no-cache-dir
 ```
 
-(Optional) Third, if you want to run `Inferencer` (`inferencer.py`), please clone the [modified **iFeatureOmega**](https://github.com/duongttr/iFeatureOmega-CLI) package into `src/` folder. In this package, we optimized the speed processing of `_TPC()` function.
+(Optional) Third, if you want to run `Inferencer` (`inferencer.py`), please clone the [modified **iFeatureOmega**](https://github.com/duongttr/iFeatureOmegaCLI) package into `src/` folder. In this package, we optimized the speed processing of `_TPC()` function.
+
+```bash
+cd src/
+!git clone https://github.com/duongttr/iFeatureOmegaCLI
+cd ..
+```
 
 ## Preparing datasets
 In this project, we utilized the benchmark dataset from [ToxinPred3](https://doi.org/10.1016/j.compbiomed.2024.108926). We used 3 main NLP models: **ESM-1**, **ESM-2** and **ProtT5**, and concatenated conventional descriptors (CCDs) extracted from **iFeatureOmega**. We already extracted features for all of them and they can be downloaded from [OneDrive](https://1drv.ms/u/c/fa72f5f3c0e55162/EYiEkLysyp1AuaztMkayR_gBFTdrxJ5x0_coCmzxCvrIKA?e=m4fUbr). You can also find the raw dataset inside `raw_dataset/` folder or from the [original website](https://webs.iiitd.edu.in/raghava/toxinpred3/download.php).
@@ -94,22 +101,26 @@ To reconstruct the results from the paper, you can run two following commands:
 
 ### NLP only
 ```bash
-python train_nlp_only.py --config configs/config_HyPepToxFuse_Hybrid.yaml --cuda
+python train_nlp_only.py --config configs/config_HyPepToxFuse_NLP_only.yaml --cuda
 ```
 
 ### Hybrid (NLP+CCDs) - our main model
 ```bash
-python train_hybrid.py --config configs/config_HyPepToxFuse_NLP_only.yaml --cuda
+python train_hybrid.py --config configs/config_HyPepToxFuse_Hybrid.yaml --cuda
 ```
 
 ## Predicting models
+
 We've already designed `HyPepToxFuse_Predictor()` module in `predict.py`, you can easily use it by this sample code:
 
 ```python
 from predict import HyPepToxFuse_Predictor
+import yaml
+
+config = yaml.safe_load(open('configs/config_HyPepToxFuse_Hybrid.yaml'))
 
 predictor = HyPepToxFuse_Predictor(
-    model_config=dict(), # A dict of model configuration, which can be easily loaded from yaml config file (`model_config` key).
+    model_config=config['model_config'], # A dict of model configuration, which can be easily loaded from yaml config file (`model_config` key).
     ckpt_dir='/path/to/ckpt/dir', # The path to all folds' checkpoints. 
     nfold=5, # Number of checkpoints inside `ckpt_dir`. Please use 5, which is the default of our training configuration.
     device='cpu', # Device, 'cpu' or 'cuda'.
@@ -135,7 +146,7 @@ outputs = predictor(
 )
 # Return: a tuple of list of toxcitiy (list[bool]) and list of 5-fold probabilities (list[list[float]])
 ```
-You can download best models at [OneDrive](https://1drv.ms/u/c/fa72f5f3c0e55162/EYOrJEFT8tZGp-dOpN8cYsYBlrGaKI9RkegHARTUJm9pLg?e=CRF9rT)  
+You can download best models at [OneDrive](https://1drv.ms/u/c/fa72f5f3c0e55162/EYOrJEFT8tZGp-dOpN8cYsYBlrGaKI9RkegHARTUJm9pLg?e=CRF9rT) or **Releases**.
 
 > **Note**: The `HyPepToxFuse_Predictor` only works when you've already had extracted features, so that we've also designed the `Inferencer` for automatically extracting features, reading peptide sequences from FASTA file, and saving results to CSV file, in the following section. 
 
@@ -145,10 +156,17 @@ You can easily inference the model by using `Inferencer`, follow this sample cod
 ```python
 from predict import HyPepToxFuse_Predictor
 from inferencer import Inferencer
-
+import yaml
 
 # Initialize predictor
-predictor = HyPepToxFuse_Predictor(...)
+config = yaml.safe_load(open('configs/config_HyPepToxFuse_Hybrid.yaml'))
+
+predictor = HyPepToxFuse_Predictor(
+    model_config=config['model_config'], # A dict of model configuration, which can be easily loaded from yaml config file (`model_config` key).
+    ckpt_dir='/path/to/ckpt/dir', # The path to all folds' checkpoints. 
+    nfold=5, # Number of checkpoints inside `ckpt_dir`. Please use 5, which is the default of our training configuration.
+    device='cpu', # Device, 'cpu' or 'cuda'.
+)
 infer =  Inferencer(predictor, device='cpu') # You can use device 'cpu' or 'cuda', please be consistent with device of `predictor`
 
 # Predict FASTA file
@@ -157,6 +175,16 @@ outputs = infer.predict_fasta_file(
     threshold=0.5, # Classification threshold
     batch_size=4 # Size of each iteration of prediction. You can increase the batch size for faster speed processing if having enough computing resources.
 )
+
+# Predict sequences
+outputs_seq = infer.predict_sequences(
+    data_dict={'Seq_1': 'CFGG', 'Seq_2': 'MSSSHIFIGETIGT'}, 
+    threshold=0.5, 
+    batch_size=4
+)
+
+# Save results to CSV file
+infer.save_csv_file(outputs, '/path/to/csv/file')
 
 # Save results to CSV file
 infer.save_csv_file(outputs, '/path/to/csv/file')
