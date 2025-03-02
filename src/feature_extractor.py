@@ -5,7 +5,7 @@ import torch
 import esm
 from transformers import T5EncoderModel, T5Tokenizer
 
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "iFeatureOmega-CLI"))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "iFeatureOmegaCLI"))
 import iFeatureOmegaCLI as ifo
 
 from .ccd_feature_order import CCD_INFO
