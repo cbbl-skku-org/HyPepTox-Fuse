@@ -96,7 +96,13 @@ trainer_config:
   threshold: 0.5 # Classification threshold
 ```
 
+## Memory issue
+>⚠️ We recommend having at least 64GB of RAM for training and inference, as this code loads all data into RAM to minimize file reads.
+
+>ℹ️ If you have limited RAM, please modify the dataset module to `*_Load_One_Sample` in the training files (see `src/dataset_module.py`).
+
 ## Training models
+
 To reconstruct the results from the paper, you can run two following commands:
 
 ### NLP only
