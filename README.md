@@ -1,12 +1,15 @@
 <h1 align="center">HyPepTox-Fuse</h1>
-<p align="center"><a href="">📝 Paper</a> | <a href="https://balalab-skku.org/HyPepTox-Fuse/">🌐 Webserver (CBBL-SKKU)</a> | <a href="https://1drv.ms/f/c/fa72f5f3c0e55162/Ev06ewB86b5Hv-xAMCaLOkMBEOqAxyZEYrqfq2_-z70WKg?e=7lmVaP">🚩 Model & Dataset</a></p>
+<p align="center"><a href="https://doi.org/10.1016/j.jpha.2025.101410">📝 Paper</a> | <a href="https://balalab-skku.org/HyPepTox-Fuse/">🌐 Webserver (CBBL-SKKU)</a> | <a href="https://1drv.ms/f/c/fa72f5f3c0e55162/Ev06ewB86b5Hv-xAMCaLOkMBEOqAxyZEYrqfq2_-z70WKg?e=7lmVaP">🚩 Model & Dataset</a></p>
 
-The official implementation of paper: **HyPepTox-Fuse: An interpretable hybrid framework for accurate peptide toxicity prediction using NLP-based embeddings and conventional descriptors fusion**
+The official implementation of paper: **HyPepTox-Fuse: An interpretable hybrid framework for accurate peptide toxicity prediction fusing protein language model-based embeddings with conventional descriptors**
 
 ## Abstract
-> Update soon!
+> Peptide-based therapeutics hold great promise for the treatment of various diseases; however, their clinical application is often hindered by toxicity challenges. The accurate prediction of peptide toxicity is crucial for designing safe peptide-based therapeutics. While traditional experimental approaches are time-consuming and expensive, computational methods have emerged as viable alternatives, including similarity-based and machine learning (ML)-/deep learning (DL)-based methods. However, existing methods often struggle with robustness and generalizability. To address these challenges, we propose HyPepTox-Fuse, a novel framework that fuses protein language model (PLM)-based embeddings with conventional descriptors. HyPepTox-Fuse integrates ensemble PLM-based embeddings to achieve richer peptide representations by leveraging a cross-modal multi-head attention mechanism and Transformer architecture. A robust feature ranking and selection pipeline further refines conventional descriptors, thus enhancing prediction performance. Our framework outperforms state-of-the-art methods in cross-validation and independent evaluations, offering a scalable and reliable tool for peptide toxicity prediction. Moreover, we conducted a case study to validate the robustness and generalizability of HyPepTox-Fuse, highlighting its effectiveness in enhancing model performance. Furthermore, the HyPepTox-Fuse server is freely accessible at https://balalab-skku.org/HyPepTox-Fuse/ and the source code is publicly available at https://github.com/cbbl-skku-org/HyPepTox-Fuse/. The study thus presents an intuitive platform for predicting peptide toxicity and supports reproducibility through openly available datasets.
 
 ## News
+- `2025.07.19`: Happy to announce that our manuscript was accepted 🎉🎉🎉 (DOI: [10.1016/j.jpha.2025.101410](10.1016/j.jpha.2025.101410))
+- `2025.06.11`: Manuscript was received the 2nd revision
+- `2025.02.01`: Manuscript was received the 1st revision
 - `2024.12.31`: Manuscript was submitted to Journal of Pharmaceutical Analysis (JPA)
 
 ## TOC
@@ -199,5 +202,16 @@ infer.save_csv_file(outputs, '/path/to/csv/file')
 ## Citation
 If you are interested in my work, please cite this:
 ```
-Update soon!
+@article{TRAN2025101410,
+title = {HyPepTox-Fuse: An interpretable hybrid framework for accurate peptide toxicity prediction fusing protein language model-based embeddings with conventional descriptors},
+journal = {Journal of Pharmaceutical Analysis},
+pages = {101410},
+year = {2025},
+issn = {2095-1779},
+doi = {https://doi.org/10.1016/j.jpha.2025.101410},
+url = {https://www.sciencedirect.com/science/article/pii/S2095177925002278},
+author = {Duong Thanh Tran and Nhat Truong Pham and Nguyen Doan {Hieu Nguyen} and Leyi Wei and Balachandran Manavalan},
+keywords = {Peptide toxicity, Hybrid framework, Multi-head attention, Transformer, Deep learning, Machine learning, Natural language processing},
+abstract = {Peptide-based therapeutics hold great promise for the treatment of various diseases; however, their clinical application is often hindered by toxicity challenges. The accurate prediction of peptide toxicity is crucial for designing safe peptide-based therapeutics. While traditional experimental approaches are time-consuming and expensive, computational methods have emerged as viable alternatives, including similarity-based and machine learning (ML)-/deep learning (DL)-based methods. However, existing methods often struggle with robustness and generalizability. To address these challenges, we propose HyPepTox-Fuse, a novel framework that fuses protein language model (PLM)-based embeddings with conventional descriptors. HyPepTox-Fuse integrates ensemble PLM-based embeddings to achieve richer peptide representations by leveraging a cross-modal multi-head attention mechanism and Transformer architecture. A robust feature ranking and selection pipeline further refines conventional descriptors, thus enhancing prediction performance. Our framework outperforms state-of-the-art methods in cross-validation and independent evaluations, offering a scalable and reliable tool for peptide toxicity prediction. Moreover, we conducted a case study to validate the robustness and generalizability of HyPepTox-Fuse, highlighting its effectiveness in enhancing model performance. Furthermore, the HyPepTox-Fuse server is freely accessible at https://balalab-skku.org/HyPepTox-Fuse/ and the source code is publicly available at https://github.com/cbbl-skku-org/HyPepTox-Fuse/. The study thus presents an intuitive platform for predicting peptide toxicity and supports reproducibility through openly available datasets.}
+}
 ```
